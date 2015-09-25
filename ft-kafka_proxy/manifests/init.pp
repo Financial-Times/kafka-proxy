@@ -21,11 +21,9 @@ class kafka_proxy {
       require         => Yumrepo[$confluent]
   }
 
-
   file {
     $config_file:
       content => template("$module_name/kafka-proxy.properties.erb"),
       mode    => "0664";
   }
-
- }
+}
