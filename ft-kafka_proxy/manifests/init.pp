@@ -8,7 +8,6 @@ class kafka_proxy {
 
   yumrepo {
     $confluent:
-      name     => "Confluent repository for 1.x packages",
       baseurl  => "http://packages.confluent.io/rpm/1.0",
       gpgcheck => 1,
       gpgkey   => "http://packages.confluent.io/rpm/1.0/archive.key",
