@@ -1,4 +1,4 @@
-id=<%=scope.function_hiera('id','null')%>
+id=${::certname}
 port=8080
-zookeeper.connect=<%=scope.function_hiera('zookeeper','null')%>
+zookeeper.connect=<%=scope.function_hiera('zookeepers')%>
 
