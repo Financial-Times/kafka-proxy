@@ -1,3 +1,3 @@
 # kafka-rest-proxy
 
-Puppet module
+Puppet module for deploying the kafka-rest-proxy (https://github.com/confluentinc/kafka-rest)
