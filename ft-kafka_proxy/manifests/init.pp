@@ -15,7 +15,7 @@ class kafka_proxy {
   }
 
   package {
-    "confluent-kafka-rest-2.11.5":
+    "confluent-kafka-rest":
       ensure          => installed,   
       require         => Yumrepo[$confluent]
   }
@@ -23,6 +23,20 @@ class kafka_proxy {
   file {
     $config_file:
       content => template("$module_name/kafka-proxy.properties.erb"),
-      mode    => "0664";
+      mode    => "0664"
+  }
+
+  exec {
+    "stop-kafka-rest-proxy":
+      command		=> "/usr/bin/kafka-rest-stop",
+      subscribe		=> File[$config_file],
+      refreshonly	=> true
+  }
+
+  exec {
+    "start-kafka-rest-proxy":
+      command		=> "/usr/bin/kafka-rest-start",
+      subscribe 	=> Exec["stop-kafka-rest-proxy"],
+      refreshonly	=> true
   }
 }
