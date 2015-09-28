@@ -1,6 +1,6 @@
 class kafka_proxy {
 
-  $confluent = "confluent-1.0"
+  $kafka_rest = "confluent-kafka-rest"
   $config_file = "/etc/kafka-proxy.properties"
 
   class { 'common_pp_up': }
@@ -15,7 +15,7 @@ class kafka_proxy {
   }
 
   package {
-    "confluent-kafka-rest":
+    $kafka_rest:
       ensure          => installed,   
       require         => Yumrepo[$confluent]
   }
@@ -27,16 +27,16 @@ class kafka_proxy {
   }
 
   exec {
-    "stop-kafka-rest-proxy":
+    'stop-kafka-rest-proxy':
       command		=> "/usr/bin/kafka-rest-stop",
-      subscribe		=> [ Yumrepo["confluent-kafka-rest"], File[$config_file] ], 
+      subscribe		=> [ Yumrepo[$kafka_rest], File[$config_file] ], 
       refreshonly	=> true
   }
 
   exec {
-    "start-kafka-rest-proxy":
+    'start-kafka-rest-proxy':
       command		=> "/usr/bin/kafka-rest-start",
-      subscribe 	=> Exec["stop-kafka-rest-proxy"],
+      subscribe 	=> Exec['stop-kafka-rest-proxy'],
       refreshonly	=> true
   }
 }
