@@ -1,4 +1,4 @@
-id=${::certname}
+id=<%= scope.lookupvar('::clientcert') %>
 port=8080
 zookeeper.connect=<%=scope.function_hiera('zookeepers')%>
 
