@@ -7,8 +7,6 @@ class kafka_proxy {
   class { 'common_pp_up': }
   class { "${module_name}::monitoring": }
 
-  include jdk
-
   yumrepo {
     $confluent:
       baseurl  => "http://packages.confluent.io/rpm/1.0",
@@ -28,6 +26,8 @@ class kafka_proxy {
       content => template("$module_name/kafka-proxy.properties.erb"),
       mode    => "0664"
   }
+
+  require jdk
 
   exec {
     'stop-kafka-rest-proxy':
