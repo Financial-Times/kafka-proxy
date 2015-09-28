@@ -1,5 +1,6 @@
 class kafka_proxy {
 
+  $confluent = "confluent-1.0"
   $kafka_rest = "confluent-kafka-rest"
   $config_file = "/etc/kafka-proxy.properties"
 
@@ -29,7 +30,7 @@ class kafka_proxy {
   exec {
     'stop-kafka-rest-proxy':
       command		=> "/usr/bin/kafka-rest-stop",
-      subscribe		=> [ Yumrepo[$kafka_rest], File[$config_file] ], 
+      subscribe		=> [ Package[$kafka_rest], File[$config_file] ],
       refreshonly	=> true
   }
 
