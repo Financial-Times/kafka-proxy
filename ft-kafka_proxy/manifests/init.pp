@@ -7,6 +7,8 @@ class kafka_proxy {
   class { 'common_pp_up': }
   class { "${module_name}::monitoring": }
 
+  include jdk
+
   yumrepo {
     $confluent:
       baseurl  => "http://packages.confluent.io/rpm/1.0",
