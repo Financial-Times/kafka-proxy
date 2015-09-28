@@ -29,7 +29,7 @@ class kafka_proxy {
 
   exec {
     'stop-kafka-rest-proxy':
-      command		=> "/usr/bin/kafka-rest-stop || true && /usr/bin/kafka-rest-start"",
+      command		=> "/usr/bin/kafka-rest-stop || true && /usr/bin/kafka-rest-start",
       subscribe		=> [ Package[$kafka_rest], File[$config_file] ],
       refreshonly	=> true
   }
