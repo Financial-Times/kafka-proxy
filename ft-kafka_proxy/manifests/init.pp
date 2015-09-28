@@ -2,7 +2,8 @@ class kafka_proxy {
 
   $confluent = "confluent-1.0"
   $kafka_rest = "confluent-kafka-rest"
-  $config_file = "/etc/kafka-proxy.properties"
+  $config_file = "/etc/kafka-rest/kafka-proxy.properties"
+  $log_file = "/etc/kafka-rest/log4j.properties"
 
   class { 'common_pp_up': }
   class { "${module_name}::monitoring": }
@@ -26,6 +27,12 @@ class kafka_proxy {
     $config_file:
       content => template("$module_name/kafka-proxy.properties.erb"),
       mode    => "0664"
+  }
+
+  file {
+    $log_file:
+      content	=> template("$module_name/log4j.properties.erb"),
+      mode	=> "0664"
   }
 
   exec {
