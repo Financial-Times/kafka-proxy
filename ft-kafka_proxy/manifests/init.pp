@@ -29,7 +29,7 @@ class kafka_proxy {
   exec {
     "stop-kafka-rest-proxy":
       command		=> "/usr/bin/kafka-rest-stop",
-      subscribe		=> File[$config_file],
+      subscribe		=> [ Yumrepo["confluent-kafka-rest"], File[$config_file] ] 
       refreshonly	=> true
   }
 
