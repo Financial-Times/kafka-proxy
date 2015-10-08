@@ -42,6 +42,6 @@ class kafka_proxy {
       refreshonly	=> true
   }
 
-  Exec['enforce_jdk_used'] ~> Service['kafka-proxy']
+  Exec['enforce_jdk_used'] ~> Exec['restart-kafka-rest-proxy']
 
 }
