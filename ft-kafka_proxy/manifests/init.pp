@@ -37,7 +37,7 @@ class kafka_proxy {
 
   exec {
     'restart-kafka-rest-proxy':
-      command		=> "/usr/bin/kafka-rest-stop || nohup /usr/bin/kafka-rest-start $config_file &",
+      command		=> "/usr/bin/kafka-rest-stop || true && nohup /usr/bin/kafka-rest-start $config_file &",
       subscribe		=> [ Package[$kafka_rest], File[$config_file], File[$log_file], Class['jdk'] ],
       refreshonly	=> true
   }
