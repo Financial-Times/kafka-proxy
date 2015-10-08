@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+#       /etc/rc.d/init.d/
+#
+#
+#
+#
+#
+
+
+start() {
+	if isRunning; then
+		echo "Service is already running"
+		exit 1
+	fi
+        echo -n "Starting : "
+	/usr/bin/kafka-rest-start -daemon etc/kafka-rest/kafka-proxy.properties
+        return
+}
+
+stop() {
+        echo -n "Shutting down : "
+        /usr/bin/kafka-rest-stop
+        return
+}
+
+status() {
+	if ! isRunning; then
+  	  	echo "Stopped"
+		return
+	fi
+	echo "Running"
+	return
+}
+
+isRunning() {
+	TARGET=`ps ax | egrep -i '("(kafkarest\.Main)|(kafkarest\.KafkaRestMain)")' | grep java | grep -v grep | awk '{print $1}'`
+	if [ "x$TARGET" = "x" ]; then
+  	  	return 1
+	fi
+	return 0
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+	status
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage:  {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+exit $?
