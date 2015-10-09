@@ -14,7 +14,7 @@ start() {
 		exit 1
 	fi
         echo -n "Starting : "
-	/usr/bin/kafka-rest-start -daemon etc/kafka-rest/kafka-proxy.properties
+	/usr/bin/kafka-rest-start -daemon /etc/kafka-rest/kafka-proxy.properties
         return
 }
 
