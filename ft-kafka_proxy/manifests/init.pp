@@ -1,9 +1,10 @@
 class kafka_proxy {
 
   $confluent = "confluent-1.0"
-  $kafka_rest = "confluent-kafka-rest"
+  $confluent_kafka_rest = "confluent-kafka-rest"
   $config_file = "/etc/kafka-rest/kafka-proxy.properties"
   $log_file = "/etc/kafka-rest/log4j.properties"
+  $init_file = "/etc/init.d/kafka-proxy"
 
   class { 'common_pp_up': }
   class { "${module_name}::monitoring": }
@@ -18,9 +19,16 @@ class kafka_proxy {
   }
 
   package {
-    $kafka_rest:
-      ensure          => installed,   
-      require         => Yumrepo[$confluent]
+    $confluent_kafka_rest:
+      ensure  => installed,
+      require => Yumrepo[$confluent]
+  }
+
+  file {
+    $init_file:
+      content => file("$module_name/kafka-proxy"),
+      mode    => "0755"
+
   }
 
   file {
@@ -31,17 +39,17 @@ class kafka_proxy {
 
   file {
     $log_file:
-      content	=> template("$module_name/log4j.properties.erb"),
-      mode	=> "0664"
+      content => template("$module_name/log4j.properties.erb"),
+      mode    => "0664"
   }
 
-  exec {
-    'restart-kafka-rest-proxy':
-      command		=> "/usr/bin/kafka-rest-stop; /usr/bin/kafka-rest-start -daemon $config_file",
-      subscribe		=> [ Package[$kafka_rest], File[$config_file], File[$log_file], Class['jdk'] ],
-      refreshonly	=> true
+  service {
+    'kafka-rest':
+      ensure    => "running",
+      enable    => true,
+      subscribe => [ Package[$confluent_kafka_rest], File[$init_file], File[$config_file], File[$log_file], Class['jdk'] ]
   }
 
-  Exec['enforce_jdk_used'] ~> Exec['restart-kafka-rest-proxy']
+  Exec['enforce_jdk_used'] ~> Service['kafka-rest']
 
 }
