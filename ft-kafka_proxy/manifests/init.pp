@@ -26,7 +26,7 @@ class kafka_proxy {
 
   file {
     $init_file:
-      content => file("$module_name/kafka-proxy"),
+      content => template("$module_name/kafka-proxy"),
       mode    => "0755"
   }
 
