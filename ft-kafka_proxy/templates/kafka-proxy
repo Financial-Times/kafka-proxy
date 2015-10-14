@@ -30,7 +30,7 @@ status() {
 }
 
 isRunning() {
-	TARGET=`ps ax | egrep -i '("(kafkarest\.Main)|(kafkarest\.KafkaRestMain)")' | grep java | grep -v grep | awk '{print $1}'`
+	TARGET=`ps ax | egrep -i '(kafkarest\.Main)|(kafkarest\.KafkaRestMain)' | grep java | grep -v grep | awk '{print $1}'`
 	if [ "x$TARGET" = "x" ]; then
   	  	return 1
 	fi
