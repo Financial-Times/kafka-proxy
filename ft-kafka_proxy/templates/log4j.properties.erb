@@ -1,4 +1,5 @@
-log4j.rootLogger=INFO, file, stdout
+log4j.rootLogger=WARN, file, stdout
+log4j.logger.io.confluent.rest-utils.requests=INFO, file, stdout
 
 log4j.appender.file=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.file.File=/var/log/apps/kafka-proxy/kafka-proxy-java-app.log

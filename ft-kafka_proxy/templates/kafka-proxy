@@ -7,7 +7,7 @@
 start() {
 	if isRunning; then
 		echo "Service is already running"
-		exit 1
+        return
 	fi
     echo -n "Starting : "
     nohup /usr/bin/kafka-rest-start /etc/kafka-rest/kafka-proxy.properties &
