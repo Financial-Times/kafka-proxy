@@ -28,7 +28,6 @@ class kafka_proxy {
     $init_file:
       content => file("$module_name/kafka-proxy"),
       mode    => "0755"
-
   }
 
   file {
