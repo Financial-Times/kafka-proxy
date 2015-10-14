@@ -9,15 +9,15 @@ start() {
 		echo "Service is already running"
 		exit 1
 	fi
-        echo -n "Starting : "
-	nohup /usr/bin/kafka-rest-start /etc/kafka-rest/kafka-proxy.properties &
-        return
+    echo -n "Starting : "
+    nohup /usr/bin/kafka-rest-start /etc/kafka-rest/kafka-proxy.properties &
+    return
 }
 
 stop() {
-        echo -n "Shutting down : "
-        /usr/bin/kafka-rest-stop
-        return
+    echo -n "Shutting down : "
+    /usr/bin/kafka-rest-stop
+    return
 }
 
 status() {
