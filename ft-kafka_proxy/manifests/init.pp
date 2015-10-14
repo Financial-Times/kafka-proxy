@@ -47,7 +47,7 @@ class kafka_proxy {
     'kafka-rest':
       ensure    => "running",
       enable    => true,
-      subscribe => [ Package[$confluent_kafka_rest], File[$init_file], File[$config_file], File[$log_file], Class['jdk'] ]
+      subscribe => [ Package[$confluent_kafka_rest], File[$init_file], File[$config_file], File[$log_file], Package['Java'] ]
   }
 
   Exec['enforce_jdk_used'] ~> Service['kafka-rest']
