@@ -18,7 +18,8 @@ start() {
 
 stop() {
     echo -n "Shutting down : "
-    /usr/bin/kafka-rest-stop-service $PATTERN
+    /usr/bin/kafka-rest-stop
+    sleep 2
     return
 }
 
