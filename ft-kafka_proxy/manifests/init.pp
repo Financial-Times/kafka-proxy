@@ -21,7 +21,7 @@ class kafka_proxy {
   package {
     $confluent_kafka_rest:
       ensure  => installed,
-      require => Yumrepo[$confluent]
+      require => [ Yumrepo[$confluent], Class['jdk'] ]
   }
 
   file {
@@ -46,7 +46,7 @@ class kafka_proxy {
     'kafka-rest':
       ensure    => "running",
       enable    => true,
-      subscribe => [ Package[$confluent_kafka_rest], File[$init_file], File[$config_file], File[$log_file], Package['Java'] ]
+      subscribe => [ Package[$confluent_kafka_rest], File[$init_file], File[$config_file], File[$log_file] ]
   }
 
   Exec['enforce_jdk_used'] ~> Service['kafka-rest']
