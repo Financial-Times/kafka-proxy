@@ -4,6 +4,8 @@
 # description: kafka-proxy
 # chkconfig: 2345 98 02
 
+PATTERN='(kafkarest\.Main)|(kafkarest\.KafkaRestMain)'
+
 start() {
 	if isRunning; then
 		echo "Service is already running"
@@ -16,7 +18,7 @@ start() {
 
 stop() {
     echo -n "Shutting down : "
-    /usr/bin/kafka-rest-stop
+    /usr/bin/kafka-rest-stop-service $PATTERN
     return
 }
 
@@ -30,7 +32,7 @@ status() {
 }
 
 isRunning() {
-	TARGET=`ps ax | egrep -i '(kafkarest\.Main)|(kafkarest\.KafkaRestMain)' | grep java | grep -v grep | awk '{print $1}'`
+	TARGET=`ps ax | egrep -i $PATTERN | grep java | grep -v grep | awk '{print $1}'`
 	if [ "x$TARGET" = "x" ]; then
   	  	return 1
 	fi
