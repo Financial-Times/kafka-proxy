@@ -1,5 +1,6 @@
 log4j.rootLogger=ERROR, file, stdout
 log4j.logger.io.confluent.rest-utils.requests=INFO, file, stdout
+log4j.additivity.io.confluent.rest-utils.requests=false
 
 log4j.appender.file=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.file.File=/var/log/apps/kafka-proxy/kafka-proxy-java-app.log
