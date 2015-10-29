@@ -1,5 +1,5 @@
 id=<%= @hostname %>
 port=8080
 zookeeper.connect=<%=scope.function_hiera(['zookeepers'])%>
-fetch.max.message.bytes=16777216
+fetch.message.max.bytes=16777216
 consumer.request.max.bytes=17825792
