@@ -42,11 +42,19 @@ class kafka_proxy {
       mode    => "0664"
   }
 
+  file { 
+    'sysconfig':
+      path    => "/etc/sysconfig/kafka-proxy",
+      content => template("${module_name}/sysconfig.erb"),
+      owner   => 'root',
+      group   => 'root',
+  }
+
   service {
     'kafka-proxy':
       ensure    => "running",
       enable    => true,
-      subscribe => [ Package[$confluent_kafka_rest], File[$init_file], File[$config_file], File[$log_file] ]
+      subscribe => [ Package[$confluent_kafka_rest], File[$init_file], File[$config_file], File[$log_file], File['sysconfig'] ]
   }
 
   Exec['enforce_jdk_used'] ~> Service['kafka-proxy']
