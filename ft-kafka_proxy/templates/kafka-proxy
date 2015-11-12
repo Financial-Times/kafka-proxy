@@ -7,7 +7,7 @@
 PATTERN='(kafkarest\.Main)|(kafkarest\.KafkaRestMain)'
 
 # Get instance specific config file
-if [ -r "/etc/sysconfig/kafka-proxy}" ]; then
+if [ -r "/etc/sysconfig/kafka-proxy" ]; then
     . /etc/sysconfig/kafka-proxy
 fi
 
