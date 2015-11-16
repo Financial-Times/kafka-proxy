@@ -10,3 +10,4 @@
 
 # this is read in kafka-rest-run-class, MBeans wil be exposed if this is set
 export JMX_PORT=<%=scope.function_hiera(['jmx_port',''])%>
+export KAFKAREST_HEAP_OPTS=-Xmx1g
