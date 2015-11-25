@@ -42,7 +42,8 @@ class kafka_proxy {
 
   file {
     $start_script:
-      content => template("$module_name/kafka-rest-start-with-sysconfig")
+      content => template("$module_name/kafka-rest-start-with-sysconfig"),
+      mode    => "0744"
   }
 
   file {
