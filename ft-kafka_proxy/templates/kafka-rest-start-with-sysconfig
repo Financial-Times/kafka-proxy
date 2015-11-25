@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Get instance specific config file
+if [ -r "/etc/sysconfig/kafka-proxy" ]; then
+    . /etc/sysconfig/kafka-proxy
+fi
+
+/usr/bin/kafka-rest-start /etc/kafka-rest/kafka-proxy.properties
