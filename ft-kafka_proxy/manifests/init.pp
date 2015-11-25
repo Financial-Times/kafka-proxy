@@ -7,7 +7,7 @@ class kafka_proxy {
   $log_config = "/etc/kafka-rest/log4j.properties"
   $sysconfig = "sysconfig"
 
-  $name = "kafka-proxy"
+  $kafka_proxy = "kafka-proxy"
 
   class { 'common_pp_up': }
   class { "${module_name}::monitoring": }
@@ -54,7 +54,7 @@ class kafka_proxy {
   }
 
   exec { 'restart_kafka-proxy':
-    command     => "supervisorctl restart $name",
+    command     => "supervisorctl restart $kafka_proxy",
     path        => "/usr/bin:/usr/sbin:/bin",
     subscribe   => [
       Package[$confluent_kafka_rest],

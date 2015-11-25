@@ -20,7 +20,7 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 [supervisorctl]
 serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
 
-[program:<%=name%>]
+[program:<%=kafka_proxy%>]
 command=<%=start_script%>
 autorestart=true
 startsecs=20
