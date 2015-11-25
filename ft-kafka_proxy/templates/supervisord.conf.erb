@@ -23,6 +23,7 @@ serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
 [program:<%=kafka_proxy%>]
 command=<%=start_script%>
 autorestart=true
+killasgroup=true
 startsecs=20
 stdout_logfile=/dev/null
 redirect_stderr=true
