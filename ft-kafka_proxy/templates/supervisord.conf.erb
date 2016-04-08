@@ -5,7 +5,7 @@ file=/var/run/supervisor.sock
 port=9001
 
 [supervisord]
-logfile=<%=supervisord_log_dir%>/supervisord.log
+logfile=<%= @supervisord_log_dir %>/supervisord.log
 logfile_maxbytes=5MB
 logfile_backups=30
 loglevel=info
@@ -20,8 +20,8 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 [supervisorctl]
 serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
 
-[program:<%=kafka_proxy%>]
-command=<%=start_script%>
+[program:<%= @kafka_proxy %>]
+command=<%= @start_script %>
 autorestart=true
 stopasgroup=true
 killasgroup=true
