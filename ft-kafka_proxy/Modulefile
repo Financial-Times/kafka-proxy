@@ -11,3 +11,5 @@ project_page 'UNKNOWN'
 dependency 'ft/common_pp_up', '>=0.0.1'
 dependency 'ft/jdk', '1.x'
 dependency 'ft/satellitesubscribe', '0.0.x'
+dependency 'petems/swap_file', '>=2.0.0'
+

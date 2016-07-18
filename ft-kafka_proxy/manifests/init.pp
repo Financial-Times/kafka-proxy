@@ -13,6 +13,7 @@ class kafka_proxy {
   class { "${module_name}::monitoring": }
   class { "${module_name}::supervisord": }
   class { 'jdk': version => '1.8.0' }
+  class { "swap::create_swap": }
 
   yumrepo {
     $confluent:
