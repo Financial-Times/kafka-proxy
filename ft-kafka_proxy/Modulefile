@@ -1,5 +1,5 @@
 name    'ft-kafka_proxy'
-version '0.2.2'
+version '0.2.3'
 source 'UNKNOWN'
 author 'ft'
 license 'Apache License, Version 2.0'
@@ -11,3 +11,5 @@ project_page 'UNKNOWN'
 dependency 'ft/common_pp_up', '>=0.0.1'
 dependency 'ft/jdk', '1.x'
 dependency 'ft/satellitesubscribe', '0.0.x'
+dependency 'petems/swap_file', '>=2.0.0'
+
